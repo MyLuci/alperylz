@@ -121,6 +121,16 @@
             color: var(--black);
             text-decoration: none;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-circle {
+            width: 12px;
+            height: 12px;
+            background: var(--bauhaus-red);
+            border-radius: 50%;
         }
 
         .nav-links {
@@ -495,7 +505,10 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">Alper Yıldız</a>
+        <a href="#" class="logo">
+            <span class="logo-circle"></span>
+            Alper Yıldız
+        </a>
         <ul class="nav-links">
             <li><a href="#about">about</a></li>
             <li><a href="assets/resume.pdf" target="_blank">resume</a></li>
@@ -515,11 +528,6 @@
             <h1 class="name">Alper Yıldız</h1>
             <p class="title">
                 UI/UX Designer
-                <span class="title-shape">
-                    <span class="mini-circle"></span>
-                    <span class="mini-square"></span>
-                    <span class="mini-triangle"></span>
-                </span>
             </p>
         </header>
 
