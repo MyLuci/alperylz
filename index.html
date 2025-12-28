@@ -6,7 +6,7 @@
     <title>Alper Yıldız — UI/UX Designer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=Ogg:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --orange-primary: #FF6B35;
@@ -26,8 +26,6 @@
             --text-secondary: #666;
             --card-bg: #252525;
             --nav-gradient: linear-gradient(to bottom, #FFFBF7 50%, transparent);
-            --slot-bg: linear-gradient(145deg, #fff5f0, #fff);
-            --slot-letter-bg: linear-gradient(180deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 255, 255, 0.9) 20%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.9) 80%, rgba(255, 107, 53, 0.1) 100%);
         }
 
         /* Dark mode variables */
@@ -38,8 +36,6 @@
             --text-secondary: #999;
             --card-bg: #1A1A1A;
             --nav-gradient: linear-gradient(to bottom, #0D0D0D 50%, transparent);
-            --slot-bg: linear-gradient(145deg, #1a1a1a, #252525);
-            --slot-letter-bg: linear-gradient(180deg, rgba(255, 107, 53, 0.2) 0%, rgba(30, 30, 30, 0.9) 20%, rgba(30, 30, 30, 1) 50%, rgba(30, 30, 30, 0.9) 80%, rgba(255, 107, 53, 0.2) 100%);
             --cream: #0D0D0D;
             --charcoal: #F5F5F5;
             --gray: #aaa;
@@ -290,55 +286,22 @@
             gap: 0.5rem;
         }
 
-        /* Letter Slot Machine */
-        .letter-slots {
+        /* Greeting Text Animation */
+        .greeting-text {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            background: var(--slot-bg);
-            padding: 0.4rem 0.8rem;
-            border-radius: 12px;
-            box-shadow: 
-                0 2px 10px rgba(255, 107, 53, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            transition: background 0.4s ease, box-shadow 0.4s ease;
+            gap: 0.1rem;
         }
 
         .letter-slot {
-            width: 1.1em;
-            height: 1.6em;
+            width: auto;
+            height: 1.5em;
             overflow: hidden;
             position: relative;
-            background: var(--slot-letter-bg);
-            border-radius: 4px;
-            box-shadow: 
-                inset 0 2px 4px rgba(0, 0, 0, 0.1),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.05);
-            transition: background 0.4s ease;
-        }
-
-        [data-theme="dark"] .letter-slots {
-            box-shadow: 
-                0 2px 20px rgba(255, 107, 53, 0.25),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        [data-theme="dark"] .letter-reel {
-            color: var(--orange-light);
-            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
         }
 
         .letter-slot.space {
-            width: 0.4em;
-            background: transparent;
-            box-shadow: none;
-        }
-
-        .letter-slot.punctuation {
-            width: 0.5em;
+            width: 0.3em;
         }
 
         .letter-reel {
@@ -347,12 +310,11 @@
             align-items: center;
             font-weight: 700;
             font-size: 1.1rem;
-            color: var(--orange-dark);
-            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+            color: var(--orange-primary);
         }
 
         .letter-reel span {
-            height: 1.6em;
+            height: 1.5em;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -360,126 +322,30 @@
 
         /* Staggered spin animation for each letter - cascading effect */
         .letter-slot:nth-child(1) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0s; }
-        .letter-slot:nth-child(2) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.06s; }
-        .letter-slot:nth-child(3) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.12s; }
-        .letter-slot:nth-child(4) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.18s; }
-        .letter-slot:nth-child(5) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.24s; }
-        .letter-slot:nth-child(6) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.30s; }
-        .letter-slot:nth-child(7) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.36s; }
-        .letter-slot:nth-child(8) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.42s; }
-        .letter-slot:nth-child(9) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.48s; }
-        .letter-slot:nth-child(10) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.54s; }
+        .letter-slot:nth-child(2) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.05s; }
+        .letter-slot:nth-child(3) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.1s; }
+        .letter-slot:nth-child(4) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.15s; }
+        .letter-slot:nth-child(5) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.2s; }
+        .letter-slot:nth-child(6) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.25s; }
+        .letter-slot:nth-child(7) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.3s; }
+        .letter-slot:nth-child(8) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.35s; }
+        .letter-slot:nth-child(9) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.4s; }
+        .letter-slot:nth-child(10) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.45s; }
 
         @keyframes letterSpin {
-            /* Greeting 1: Hey there! */
-            0%, 12% {
-                transform: translateY(0);
-                filter: blur(0);
-            }
-            13%, 14% {
-                filter: blur(4px);
-            }
-            /* Greeting 2: Merhaba!! */
-            15%, 28% {
-                transform: translateY(-1.6em);
-                filter: blur(0);
-            }
-            29%, 30% {
-                filter: blur(4px);
-            }
-            /* Greeting 3: Bonjour!! */
-            31%, 45% {
-                transform: translateY(-3.2em);
-                filter: blur(0);
-            }
-            46%, 47% {
-                filter: blur(4px);
-            }
-            /* Greeting 4: Holaaaaa! */
-            48%, 62% {
-                transform: translateY(-4.8em);
-                filter: blur(0);
-            }
-            63%, 64% {
-                filter: blur(4px);
-            }
-            /* Greeting 5: Ciaooooo! */
-            65%, 78% {
-                transform: translateY(-6.4em);
-                filter: blur(0);
-            }
-            79%, 80% {
-                filter: blur(4px);
-            }
-            /* Greeting 6: Hallooooo */
-            81%, 94% {
-                transform: translateY(-8em);
-                filter: blur(0);
-            }
-            95%, 96% {
-                filter: blur(4px);
-            }
-            /* Back to start */
-            97%, 100% {
-                transform: translateY(-9.6em);
-                filter: blur(0);
-            }
+            0%, 12% { transform: translateY(0); }
+            15%, 28% { transform: translateY(-1.5em); }
+            31%, 45% { transform: translateY(-3em); }
+            48%, 62% { transform: translateY(-4.5em); }
+            65%, 78% { transform: translateY(-6em); }
+            81%, 94% { transform: translateY(-7.5em); }
+            97%, 100% { transform: translateY(-9em); }
         }
 
-        /* Shine effect on slots */
-        .letter-slot::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.6),
-                transparent
-            );
-            animation: shine 10s ease-in-out infinite;
-        }
-
-        @keyframes shine {
-            0%, 12%, 100% {
-                left: -100%;
-            }
-            14%, 15% {
-                left: 200%;
-            }
-        }
-
-        /* Click effect on slots */
-        .letter-slots:active .letter-reel {
-            animation-play-state: paused;
-        }
-
-        .letter-slots:hover {
-            transform: scale(1.02);
-            transition: transform 0.2s ease;
-        }
-
-        /* Slot machine frame decoration */
-        .slots-frame {
+        .greeting-wrapper {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            position: relative;
-        }
-
-        .slots-frame::before {
-            content: '🎰';
-            font-size: 1.2rem;
-            opacity: 0.7;
-            animation: wobble 2s ease-in-out infinite;
-        }
-
-        @keyframes wobble {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
+            gap: 0.5rem;
         }
 
         .wave {
@@ -496,9 +362,9 @@
         }
 
         .hero h1 {
-            font-family: 'Instrument Serif', serif;
+            font-family: 'Ogg', serif;
             font-size: clamp(3.5rem, 10vw, 8rem);
-            font-weight: 400;
+            font-weight: 600;
             line-height: 1;
             margin-bottom: 1.5rem;
             letter-spacing: -2px;
@@ -626,9 +492,9 @@
         }
 
         .section-title {
-            font-family: 'Instrument Serif', serif;
+            font-family: 'Ogg', serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 400;
+            font-weight: 500;
             letter-spacing: -1px;
         }
 
@@ -806,10 +672,10 @@
         }
 
         .about-text h3 {
-            font-family: 'Instrument Serif', serif;
+            font-family: 'Ogg', serif;
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         .about-text p {
@@ -885,7 +751,7 @@
         }
 
         .contact-email {
-            font-family: 'Instrument Serif', serif;
+            font-family: 'Ogg', serif;
             font-size: clamp(1.5rem, 4vw, 2.5rem);
             color: white;
             text-decoration: none;
@@ -1121,8 +987,8 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-greeting fade-in">
-                <div class="slots-frame">
-                    <div class="letter-slots" id="greetingSlots">
+                <div class="greeting-wrapper">
+                    <div class="greeting-text" id="greetingSlots">
                         <!-- Letters will be generated by JavaScript -->
                     </div>
                     <span class="wave">👋</span>
