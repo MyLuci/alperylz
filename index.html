@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alper Yıldız — UI/UX Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bauhaus-red: #E53935;
+            --bauhaus-yellow: #FDD835;
+            --bauhaus-blue: #1E88E5;
+            --black: #1A1A1A;
+            --white: #FAFAFA;
+            --gray: #666;
+            --light-gray: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Bauhaus Geometric Decorations */
+        .bauhaus-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.08;
+        }
+
+        .circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--bauhaus-red);
+            top: 10%;
+            right: -100px;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 120px solid transparent;
+            border-right: 120px solid transparent;
+            border-bottom: 200px solid var(--bauhaus-yellow);
+            bottom: 15%;
+            left: 5%;
+        }
+
+        .square {
+            width: 150px;
+            height: 150px;
+            background: var(--bauhaus-blue);
+            top: 60%;
+            right: 10%;
+            transform: rotate(15deg);
+        }
+
+        .circle-outline {
+            width: 200px;
+            height: 200px;
+            border: 4px solid var(--bauhaus-red);
+            border-radius: 50%;
+            top: 40%;
+            left: -50px;
+        }
+
+        .small-triangle {
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 70px solid var(--bauhaus-blue);
+            top: 20%;
+            left: 15%;
+            transform: rotate(-10deg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header {
+            padding-top: 140px;
+            padding-bottom: 60px;
+        }
+
+        .greeting {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .greeting-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.05rem;
+        }
+
+        .letter-slot {
+            height: 1.4em;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .letter-slot.space {
+            width: 0.3em;
+        }
+
+        .letter-reel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--bauhaus-red);
+        }
+
+        .letter-reel span {
+            height: 1.4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .letter-slot:nth-child(1) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0s; }
+        .letter-slot:nth-child(2) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.05s; }
+        .letter-slot:nth-child(3) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.1s; }
+        .letter-slot:nth-child(4) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.15s; }
+        .letter-slot:nth-child(5) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.2s; }
+        .letter-slot:nth-child(6) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.25s; }
+        .letter-slot:nth-child(7) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.3s; }
+        .letter-slot:nth-child(8) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.35s; }
+        .letter-slot:nth-child(9) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.4s; }
+        .letter-slot:nth-child(10) .letter-reel { animation: letterSpin 10s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.45s; }
+
+        @keyframes letterSpin {
+            0%, 12% { transform: translateY(0); }
+            15%, 28% { transform: translateY(-1.4em); }
+            31%, 45% { transform: translateY(-2.8em); }
+            48%, 62% { transform: translateY(-4.2em); }
+            65%, 78% { transform: translateY(-5.6em); }
+            81%, 94% { transform: translateY(-7em); }
+            97%, 100% { transform: translateY(-8.4em); }
+        }
+
+        .wave {
+            display: inline-block;
+            animation: wave 1.5s ease-in-out infinite;
+            transform-origin: 70% 70%;
+            font-size: 1.2rem;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(20deg); }
+        }
+
+        .name {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .title {
+            font-size: 1.1rem;
+            color: var(--gray);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .title-shape {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .mini-circle {
+            width: 10px;
+            height: 10px;
+            background: var(--bauhaus-red);
+            border-radius: 50%;
+        }
+
+        .mini-square {
+            width: 10px;
+            height: 10px;
+            background: var(--bauhaus-blue);
+        }
+
+        .mini-triangle {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid var(--bauhaus-yellow);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 40px 0 100px;
+        }
+
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid #eee;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-item:first-child {
+            border-top: 1px solid #eee;
+        }
+
+        .project-item:hover {
+            padding-left: 1rem;
+        }
+
+        .project-item:hover .project-title {
+            color: var(--bauhaus-blue);
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--bauhaus-red);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-item:nth-child(2)::before {
+            background: var(--bauhaus-yellow);
+            border-radius: 0;
+        }
+
+        .project-item:nth-child(3)::before {
+            background: var(--bauhaus-blue);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 8px solid var(--bauhaus-blue);
+            border-radius: 0;
+        }
+
+        .project-item:nth-child(4)::before {
+            background: var(--bauhaus-red);
+            border-radius: 0;
+        }
+
+        .project-item:hover::before {
+            opacity: 1;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .project-description {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.8rem;
+            color: var(--gray);
+            background: var(--light-gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--black);
+        }
+
+        .footer-shapes {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .footer-circle {
+            width: 12px;
+            height: 12px;
+            background: var(--bauhaus-red);
+            border-radius: 50%;
+        }
+
+        .footer-square {
+            width: 12px;
+            height: 12px;
+            background: var(--bauhaus-blue);
+        }
+
+        .footer-triangle {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 12px solid var(--bauhaus-yellow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .header {
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+
+            .project-item {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .circle {
+                width: 150px;
+                height: 150px;
+                right: -50px;
+            }
+
+            .square {
+                width: 80px;
+                height: 80px;
+            }
+
+            .triangle {
+                border-left: 60px solid transparent;
+                border-right: 60px solid transparent;
+                border-bottom: 100px solid var(--bauhaus-yellow);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Bauhaus Geometric Shapes -->
+    <div class="bauhaus-shapes">
+        <div class="shape circle"></div>
+        <div class="shape triangle"></div>
+        <div class="shape square"></div>
+        <div class="shape circle-outline"></div>
+        <div class="shape small-triangle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Alper Yıldız</a>
+        <ul class="nav-links">
+            <li><a href="#about">about</a></li>
+            <li><a href="assets/resume.pdf" target="_blank">resume</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="greeting">
+                <div class="greeting-text" id="greetingSlots">
+                    <!-- Letters will be generated by JavaScript -->
+                </div>
+                <span class="wave">👋</span>
+            </div>
+            <h1 class="name">Alper Yıldız</h1>
+            <p class="title">
+                UI/UX Designer
+                <span class="title-shape">
+                    <span class="mini-circle"></span>
+                    <span class="mini-square"></span>
+                    <span class="mini-triangle"></span>
+                </span>
+            </p>
+        </header>
+
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <div class="projects-list">
+                <a href="projects/grillcorner.html" class="project-item">
+                    <h3 class="project-title">GrillCorner</h3>
+                    <div class="project-meta">
+                        <p class="project-description">A playful food delivery app that makes ordering feel like a treat.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Mobile App</span>
+                            <span class="project-tag">UI/UX</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="projects/project-2.html" class="project-item">
+                    <h3 class="project-title">Project Title</h3>
+                    <div class="project-meta">
+                        <p class="project-description">Short description of your project goes here. Explain the impact and your role.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Web Design</span>
+                            <span class="project-tag">Branding</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="projects/project-3.html" class="project-item">
+                    <h3 class="project-title">Project Title</h3>
+                    <div class="project-meta">
+                        <p class="project-description">Short description of your project goes here. Explain the impact and your role.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Design System</span>
+                            <span class="project-tag">UI/UX</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="projects/project-4.html" class="project-item">
+                    <h3 class="project-title">Project Title</h3>
+                    <div class="project-meta">
+                        <p class="project-description">Short description of your project goes here. Explain the impact and your role.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Prototyping</span>
+                            <span class="project-tag">Research</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="about">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="mailto:contact@alperylz.com">contact@alperylz.com</a>
+                    <a href="#" target="_blank">LinkedIn</a>
+                    <a href="#" target="_blank">Dribbble</a>
+                    <a href="#" target="_blank">Behance</a>
+                </div>
+                <div class="footer-shapes">
+                    <span class="footer-circle"></span>
+                    <span class="footer-square"></span>
+                    <span class="footer-triangle"></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Letter Slot Machine Generator
+        const greetings = [
+            'Hey there!',
+            'Merhaba!!',
+            'Bonjour!!',
+            'Holaaaaa!',
+            'Ciaooooo!',
+            'Hallooooo'
+        ];
+        
+        // Find max length and pad all greetings
+        const maxLen = Math.max(...greetings.map(g => g.length));
+        const paddedGreetings = greetings.map(g => g.padEnd(maxLen, ' '));
+        
+        const slotsContainer = document.getElementById('greetingSlots');
+        
+        // Create a slot for each character position
+        for (let i = 0; i < maxLen; i++) {
+            const slot = document.createElement('div');
+            slot.className = 'letter-slot';
+            
+            // Check if this position is mostly spaces
+            const chars = paddedGreetings.map(g => g[i]);
+            const isSpace = chars.every(c => c === ' ');
+            
+            if (isSpace) {
+                slot.classList.add('space');
+            } else if (chars.some(c => '!?.'.includes(c))) {
+                slot.classList.add('punctuation');
+            }
+            
+            const reel = document.createElement('div');
+            reel.className = 'letter-reel';
+            
+            // Add each greeting's character at this position
+            paddedGreetings.forEach(greeting => {
+                const span = document.createElement('span');
+                span.textContent = greeting[i] === ' ' ? '\u00A0' : greeting[i];
+                reel.appendChild(span);
+            });
+            
+            // Add first character again for seamless loop
+            const loopSpan = document.createElement('span');
+            loopSpan.textContent = paddedGreetings[0][i] === ' ' ? '\u00A0' : paddedGreetings[0][i];
+            reel.appendChild(loopSpan);
+            
+            slot.appendChild(reel);
+            slotsContainer.appendChild(slot);
+        }
+    </script>
+</body>
+</html>
+
