@@ -134,7 +134,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: -1;
             overflow: hidden;
         }
 
@@ -204,7 +204,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
+            z-index: 1000;
             background: var(--nav-gradient);
             transition: background 0.4s ease;
         }
@@ -222,6 +222,8 @@
             text-decoration: none;
             letter-spacing: -1px;
             transition: transform 0.3s ease;
+            position: relative;
+            z-index: 101;
         }
 
         .logo:hover {
@@ -268,7 +270,7 @@
             justify-content: center;
             padding: 6rem 3rem 3rem;
             position: relative;
-            z-index: 1;
+            z-index: 10;
         }
 
         .hero-content {
@@ -1000,8 +1002,7 @@
                 UI/UX Designer
             </h1>
             <p class="hero-description fade-in">
-                Crafting delightful digital experiences that make people smile. 
-                I turn complex problems into simple, beautiful solutions.
+                Hello there! This place is still under construction. but you can still have a peak of course!
             </p>
             <div class="hero-cta fade-in">
                 <a href="#work" class="btn btn-primary">
@@ -1065,7 +1066,7 @@
                         <span class="project-tag">Mobile App</span>
                         <span class="project-tag">UI/UX</span>
                     </div>
-                    <h3 class="project-title">FoodieGo</h3>
+                    <h3 class="project-title">GrillCorner</h3>
                     <p class="project-description">A playful food delivery app that makes ordering feel like a treat.</p>
                 </div>
             </article>
