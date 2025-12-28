@@ -974,6 +974,7 @@
             <ul class="nav-links">
                 <li><a href="#work">Work</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="assets/resume.pdf" target="_blank">Resume</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -1052,7 +1053,12 @@
         </div>
         
         <div class="projects-grid">
-            <article class="project-card">
+
+            <!-- ========================================== -->
+            <!-- PROJECT 1: FoodieGo                        -->
+            <!-- To add a new project: Copy from here...    -->
+            <!-- ========================================== -->
+            <article class="project-card" data-href="projects/foodiego.html">
                 <div class="project-image"></div>
                 <div class="project-content">
                     <div class="project-tags">
@@ -1063,42 +1069,43 @@
                     <p class="project-description">A playful food delivery app that makes ordering feel like a treat.</p>
                 </div>
             </article>
-            
-            <article class="project-card">
+            <!-- ========================================== -->
+           <article class="project-card" data-href="projects/YOUR-PROJECT-NAME.html">
                 <div class="project-image"></div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="project-tag">Web App</span>
-                        <span class="project-tag">Dashboard</span>
+                        <span class="project-tag">Tag 1</span>
+                        <span class="project-tag">Tag 2</span>
                     </div>
-                    <h3 class="project-title">FinTrack Pro</h3>
-                    <p class="project-description">Making finance management simple and visually delightful.</p>
+                    <h3 class="project-title">Your Project Title</h3>
+                    <p class="project-description">Short description of your project goes here.</p>
                 </div>
             </article>
-            
-            <article class="project-card">
+            <!-- ========================================== -->
+         <article class="project-card" data-href="projects/YOUR-PROJECT-NAME.html">
                 <div class="project-image"></div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="project-tag">E-commerce</span>
-                        <span class="project-tag">Branding</span>
+                        <span class="project-tag">Tag 1</span>
+                        <span class="project-tag">Tag 2</span>
                     </div>
-                    <h3 class="project-title">StyleHub</h3>
-                    <p class="project-description">A fashion e-commerce experience that feels personal.</p>
+                    <h3 class="project-title">Your Project Title</h3>
+                    <p class="project-description">Short description of your project goes here.</p>
                 </div>
             </article>
-            
-            <article class="project-card">
+            <!-- ========================================== -->
+<article class="project-card" data-href="projects/YOUR-PROJECT-NAME.html">
                 <div class="project-image"></div>
                 <div class="project-content">
                     <div class="project-tags">
-                        <span class="project-tag">SaaS</span>
-                        <span class="project-tag">Design System</span>
+                        <span class="project-tag">Tag 1</span>
+                        <span class="project-tag">Tag 2</span>
                     </div>
-                    <h3 class="project-title">TeamSync</h3>
-                    <p class="project-description">Collaboration tools designed for teams who love great UX.</p>
+                    <h3 class="project-title">Your Project Title</h3>
+                    <p class="project-description">Short description of your project goes here.</p>
                 </div>
             </article>
+
         </div>
     </section>
 
@@ -1290,7 +1297,7 @@
             observer.observe(el);
         });
 
-        // Fun click effect on project cards
+        // Fun click effect on project cards + navigation
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('click', function(e) {
                 const ripple = document.createElement('div');
@@ -1312,7 +1319,13 @@
                 this.style.position = 'relative';
                 this.appendChild(ripple);
                 
-                setTimeout(() => ripple.remove(), 600);
+                // Navigate to project page after ripple animation
+                const href = this.getAttribute('data-href');
+                if (href) {
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                }
             });
         });
 
