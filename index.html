@@ -6,6 +6,7 @@
     <title>Alper Yıldız — UI/UX Designer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link id="favicon" rel="icon" type="image/svg+xml">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -16,6 +17,8 @@
             --white: #FAFAFA;
             --gray: #666;
             --light-gray: hsl(0, 0%, 94%);
+            --light-red-orange: #FF6B35;
+            --blue-yellow: #4A90E2;
         }
 
         * {
@@ -114,11 +117,15 @@
         }
 
         .nav-links li:first-child a:hover {
+            color: var(--light-red-orange);
+        }
+
+        .nav-links li:nth-child(2) a:hover {
             color: var(--bauhaus-blue);
         }
 
         .nav-links li:last-child a:hover {
-            color: var(--bauhaus-red);
+            color: var(--bauhaus-yellow);
         }
 
         /* Main Container */
@@ -132,6 +139,35 @@
         }
 
         /* Header Section */
+        .title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .dynamic-text {
+            position: relative;
+        }
+
+        .dynamic-text::after {
+            content: '|';
+            position: static;
+            color: var(--bauhaus-red);
+            font-weight: bold;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
         .header {
             padding-top: 60px;
             padding-bottom: 40px;
@@ -440,6 +476,68 @@
             border-radius: 20px;
         }
 
+        /* Placeholder Project Cards */
+        .project-card.placeholder {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            border: 2px dashed #ccc;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card.placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .project-card.placeholder:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card.placeholder .project-content {
+            background: linear-gradient(to top, rgba(200, 200, 200, 0.95) 0%, rgba(200, 200, 200, 0.8) 60%, transparent 100%);
+        }
+
+        .project-card.placeholder .project-title {
+            color: #888;
+        }
+
+        .project-card.placeholder .project-description {
+            color: #aaa;
+        }
+
+        .project-card.placeholder .project-tag {
+            background: rgba(150, 150, 150, 0.2);
+            color: #888;
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bauhaus-yellow);
+            color: var(--black);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 10;
+        }
+
         /* Resume Popup */
         .resume-overlay {
             position: fixed;
@@ -638,9 +736,10 @@
     </style>
 </head>
 <body>
+    
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">
+        <a href="index.html" class="logo">
             <span class="logo-circle"></span>
             Alper Yıldız
         </a>
@@ -673,7 +772,7 @@
             </div>
         </div>
         <p class="title">
-            I'm Alper, a <span class="highlight">visual designer</span> based in Istanbul , turning bold concepts into vibrant digital experiences
+            I'm Alper, a <span class="highlight">visual designer</span> based in Istanbul , <span id="dynamic-text" class="dynamic-text">turning bold concepts into vibrant digital experiences</span>
         </p>
         <div class="work-title">
             <h2 class="work-heading">My Work</h2>
@@ -684,7 +783,8 @@
     <!-- Projects Section -->
     <section class="projects-section">
         <div class="projects-grid">
-            <a href="projects/grillcorner.html" class="project-card">
+            <a href="projects/grillcorner.html" class="project-card placeholder">
+                <div class="coming-soon-badge">Coming Soon</div>
                 <div class="project-content">
                     <h3 class="project-title">GrillCorner</h3>
                     <p class="project-description">A playful food delivery app that makes ordering feel like a treat.</p>
@@ -706,7 +806,8 @@
                 </div>
             </a>
 
-            <a href="projects/project-3.html" class="project-card">
+            <a href="projects/project-3.html" class="project-card placeholder">
+                <div class="coming-soon-badge">Coming Soon</div>
                 <div class="project-content">
                     <h3 class="project-title">Project Title</h3>
                     <p class="project-description">Short description of your project goes here.</p>
@@ -717,7 +818,8 @@
                 </div>
             </a>
 
-            <a href="projects/project-4.html" class="project-card">
+            <a href="projects/project-4.html" class="project-card placeholder">
+                <div class="coming-soon-badge">Coming Soon</div>
                 <div class="project-content">
                     <h3 class="project-title">Project Title</h3>
                     <p class="project-description">Short description of your project goes here.</p>
@@ -861,7 +963,93 @@
             }
         });
 
+        // Randomize favicon
+        // Create geometric favicons using canvas
+        const createGeometricFavicon = (shape, color) => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 100;
+            canvas.height = 100;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = color;
+            
+            if (shape === 'circle') {
+                // Red dot
+                ctx.beginPath();
+                ctx.arc(50, 50, 35, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (shape === 'triangle') {
+                // Yellow triangle
+                ctx.beginPath();
+                ctx.moveTo(50, 15);
+                ctx.lineTo(85, 75);
+                ctx.lineTo(15, 75);
+                ctx.closePath();
+                ctx.fill();
+            } else if (shape === 'square') {
+                // Blue square
+                ctx.fillRect(20, 20, 60, 60);
+            }
+            
+            return canvas.toDataURL('image/png');
+        };
+
+        // Geometric favicons
+        const geometricFavicons = [
+            createGeometricFavicon('circle', '#E53935'),  // Red dot
+            createGeometricFavicon('triangle', '#FDD835'), // Yellow triangle
+            createGeometricFavicon('square', '#1E88E5')   // Blue square
+        ];
+        
+        const randomFavicon = geometricFavicons[Math.floor(Math.random() * geometricFavicons.length)];
+        document.getElementById('favicon').href = randomFavicon;
+
+        // Typing animation for dynamic text
+        const texts = [
+            'making the web a more beautiful place.',
+            'bringing creative visions to life.',
+            'solving problems with visual thinking.',
+            'the one animation that writing'
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let dynamicText = document.getElementById('dynamic-text');
+
+        function typeText() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                // Delete characters
+                dynamicText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(typeText, 500); // Pause before typing new text
+                    return;
+                }
+            } else {
+                // Type characters
+                dynamicText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeText, 2000); // Pause before deleting
+                    return;
+                }
+            }
+            
+            const typingSpeed = isDeleting ? 50 : 100;
+            setTimeout(typeText, typingSpeed);
+        }
+
+        // Start the animation
+        typeText();
+
             </script>
 </body>
 </html>
-
