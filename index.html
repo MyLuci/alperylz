@@ -53,17 +53,16 @@
 
         .visitor-counter {
             position: fixed;
-            top: 1.5rem;
-            left: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.2);
             color: var(--white);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
-            z-index: 10000;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10001;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         
@@ -757,15 +756,17 @@
         });
 
         // Visitor Counter
-        function updateVisitorCounter() {
-            let count = localStorage.getItem('visitorCount') || 0;
+        try {
+            let count = localStorage.getItem('visitorCount') || '0';
             count = parseInt(count) + 1;
-            localStorage.setItem('visitorCount', count);
-            document.getElementById('visitor-count').textContent = count;
+            localStorage.setItem('visitorCount', count.toString());
+            const counterElement = document.getElementById('visitor-count');
+            if (counterElement) {
+                counterElement.textContent = count;
+            }
+        } catch (e) {
+            console.log('Visitor counter error:', e);
         }
-
-        // Update counter on page load
-        updateVisitorCounter();
     </script>
 </body>
 </html>
