@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voila - Alper Yıldız</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        :root {
+            --bauhaus-red: #E53935;
+            --bauhaus-yellow: #FDD835;
+            --bauhaus-blue: #1E88E5;
+            --black: #1A1A1A;
+            --white: #FAFAFA;
+            --gray: #666;
+            --light-gray: hsl(0, 0%, 94%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-circle {
+            width: 12px;
+            height: 12px;
+            background: var(--bauhaus-red);
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 1.2rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links li:first-child a:hover {
+            color: var(--bauhaus-blue);
+        }
+
+        .nav-links li:last-child a:hover {
+            color: var(--bauhaus-red);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Project Hero Section */
+        .project-hero {
+            padding: 140px 0 60px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: clamp(3rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            color: var(--black);
+        }
+
+        .project-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .project-tag {
+            padding: 0.5rem 1rem;
+            background: var(--light-gray);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--black);
+            font-weight: 500;
+        }
+
+        /* Project Preview Section */
+        .project-preview {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .preview-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .preview-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        
+        /* Project Details Section */
+        .project-details {
+            padding: 4rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .detail-section {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .detail-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .detail-section p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-section li {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .detail-section li::before {
+            content: '•';
+            color: var(--bauhaus-red);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Back to Projects Button */
+        .back-button {
+            display: inline-block;
+            margin: 3rem 0;
+            padding: 1rem 2rem;
+            background: var(--bauhaus-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--bauhaus-red);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .project-hero {
+                padding: 100px 0 40px;
+            }
+
+            .project-details {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="../index.html" class="logo">
+            <span class="logo-circle"></span>
+            Alper Yıldız
+        </a>
+        <ul class="nav-links">
+            <li><a href="../about.html">about</a></li>
+            <li><a href="../resume.html">resume</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Project Hero -->
+        <section class="project-hero">
+            <h1 class="project-title">Voila</h1>
+            <p class="project-subtitle">Voilà! — Brand Identity A vibrant and bold brand identity project characterized by a vivid color palette and playful typography. Designed to capture attention and evoke a sense of excitement across product packaging and promotional materials.</p>
+            <div class="project-tags">
+                <span class="project-tag">Brand Identity</span>
+                <span class="project-tag">Graphic Design</span>
+                
+            </div>
+        </section>
+
+        <!-- Project Preview -->
+        <section class="project-preview">
+            <div class="preview-container">
+                <img src="Voila/fe7067227739969.684686900f4f1.png" alt="Voila Mobile App Design" class="preview-image">
+            </div>
+        </section>
+
+        <!-- Project Details -->
+        <section class="project-details">
+            <div class="detail-section">
+                <h3>Project Overview</h3>
+                <p>Voila is a sophisticated mobile application designed with modern UI/UX principles in mind. This project showcases elegant interactions, thoughtful user flows, and a refined visual aesthetic that prioritizes both functionality and visual appeal.</p>
+                <br>
+                <p>The design emphasizes clean layouts, intuitive navigation, and delightful micro-interactions that enhance the overall user experience.</p>
+            </div>
+
+            <div class="detail-section">
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Modern, minimalist interface design</li>
+                    <li>Intuitive user navigation patterns</li>
+                    <li>Elegant micro-interactions and animations</li>
+                    <li>Responsive layout for various screen sizes</li>
+                    <li>Thoughtful color palette and typography</li>
+                    <li>User-centered design approach</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <h3>Design Process</h3>
+                <p>The project followed a comprehensive design process including user research, wireframing, prototyping, and iterative testing. Each stage focused on refining the user experience and ensuring the final product meets both user needs and business objectives.</p>
+            </div>
+
+            <div class="detail-section">
+                <h3>Technical Implementation</h3>
+                <ul>
+                    <li>Mobile-first responsive design</li>
+                    <li>Modern UI components and patterns</li>
+                    <li>Optimized performance and loading times</li>
+                    <li>Accessibility considerations throughout</li>
+                    <li>Cross-platform compatibility testing</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Back Button -->
+        <div style="text-align: center;">
+            <a href="../index.html#projects" class="back-button">← Back to Projects</a>
+        </div>
+    </div>
+</body>
+</html>

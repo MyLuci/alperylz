@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Alper Yıldız</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bauhaus-red: #E53935;
+            --bauhaus-yellow: #FDD835;
+            --bauhaus-blue: #1E88E5;
+            --black: #1A1A1A;
+            --white: #FAFAFA;
+            --gray: #666;
+            --light-gray: hsl(0, 0%, 94%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-circle {
+            width: 12px;
+            height: 12px;
+            background: var(--bauhaus-red);
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 1.2rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links li:first-child a:hover {
+            color: var(--bauhaus-blue);
+        }
+
+        .nav-links li:last-child a:hover {
+            color: var(--bauhaus-red);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Resume Section */
+        .resume-section {
+            padding: 140px 0 100px;
+            max-width: 900px;
+        }
+
+        .resume-header {
+            margin-bottom: 3rem;
+        }
+
+        .resume-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .resume-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .resume-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .resume-section-block {
+            margin-bottom: 3rem;
+        }
+
+        .resume-section-block h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .resume-section-block h2::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--bauhaus-blue);
+            border-radius: 50%;
+        }
+
+        .resume-section-block:nth-child(2) h2::before {
+            background: var(--bauhaus-red);
+            border-radius: 0;
+        }
+
+        .resume-section-block:nth-child(3) h2::before {
+            background: transparent;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid var(--bauhaus-yellow);
+            border-radius: 0;
+        }
+
+        .resume-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .resume-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .resume-item .position {
+            font-size: 1.1rem;
+            color: var(--bauhaus-blue);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item .duration {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .resume-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resume-item li {
+            font-size: 1rem;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .resume-item li::before {
+            content: '•';
+            color: var(--bauhaus-red);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .certificate-item {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--bauhaus-blue);
+        }
+
+        .certificate-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .certificate-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .certificate-item .issuer {
+            font-size: 1rem;
+            color: var(--bauhaus-blue);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-item .date {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .certificate-item p {
+            font-size: 0.95rem;
+            color: var(--black);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-link {
+            display: inline-block;
+            color: var(--bauhaus-blue);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--bauhaus-blue);
+            border-radius: 6px;
+            background: transparent;
+        }
+
+        .certificate-link:hover {
+            background: var(--bauhaus-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .skill-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .skill-item p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .education-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .education-item .degree {
+            font-size: 1.1rem;
+            color: var(--bauhaus-blue);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .duration {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .contact-section {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-link:hover {
+            color: var(--bauhaus-blue);
+        }
+
+        .download-resume {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--bauhaus-red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-resume:hover {
+            background: var(--bauhaus-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .resume-section {
+                padding: 100px 0 60px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <span class="logo-circle"></span>
+            Alper Yıldız
+        </a>
+        <ul class="nav-links">
+            <li><a href="about.html">about</a></li>
+            <li><a href="resume.html">resume</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <section class="resume-section">
+            <div class="resume-header">
+                <h1 class="resume-title">Resume</h1>
+                <p class="resume-subtitle">Entry Level UX/UI Designer with a passion for creating meaningful digital experiences</p>
+            </div>
+
+            <div class="resume-content">
+                <div class="resume-section-block">
+                    <h2>Experience</h2>
+                    
+                    <div class="resume-item">
+                        <h3>Hotel GHT Maritim - Spain</h3>
+                        <div class="position">İnternship</div>
+                        <div class="duration">2024</div>
+                        <ul>
+                            <li>Erasmus+ internship in Barcelona, worked in a fast-paced international environment</li>
+                            <li>Developed strong teamwork and time management skills</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <h3>Freelance</h3>
+                        <div class="position">Graphic Design</div>
+                        <div class="duration">2020 - Present</div>
+                        <ul>
+                            <li>Delivering custom 2D illustrations for digital media</li>
+                            <li>Collaborating with clients to visualize concepts effectively using Adobe tools</li>
+                        </ul>
+                    </div>
+
+                                    </div>
+
+                <div class="resume-section-block">
+                    <h2>Education</h2>
+                    
+                    <div class="education-item">
+                        <h3>Marmara University</h3>
+                        <div class="degree">Master's in Visual Communication and Digital Media</div>
+                        <div class="duration">2025 - 2026</div>
+                    </div>
+
+                    
+                    <div class="education-item">
+                        <h3>Istanbul Galata University</h3>
+                        <div class="degree">Bachelor's in Gastronomy</div>
+                        <div class="duration">2020 - 2024</div>
+                    </div>
+
+                    <div class="education-item">
+                        <h3>Polytechnic Institute of Porto - Portugal</h3>
+                        <div class="degree">Student Exchange Program</div>
+                        <div class="duration">2023</div>
+                        <p>Erasmus+ Studies</p>
+                    </div>
+                </div>
+
+                <div class="resume-section-block">
+                    <h2>Certificates</h2>
+                    
+                    <div class="certificates-grid">
+                        <div class="certificate-item">
+                            <h3>Google UX Design Certificate</h3>
+                            <div class="issuer">Google</div>
+                            <div class="date">January 2025 - June 2025</div>
+                            <p>Completed comprehensive training focused on core UX design skills and real-world user experience practices</p>
+                            <a href="https://www.coursera.org/account/accomplishments/professional-cert/32MVP8HU4A6K" target="_blank" class="certificate-link">View Certificate →</a>
+                        </div>
+
+                        <div class="certificate-item">
+                            <h3>GenAI for UX Designers</h3>
+                            <div class="issuer">Google</div>
+                            <div class="date">October 2025 - November 2025</div>
+                            <p>Completed a comprehensive curriculum covering core digital marketing strategies, customer journey mapping, and e-commerce best practices</p>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/9AXWZ27XD2E9" target="_blank" class="certificate-link">View Certificate →</a>
+                        </div>
+
+                        <div class="certificate-item">
+                            <h3>Foundations of Digital Marketing and E-commerce</h3>
+                            <div class="issuer">Google</div>
+                            <div class="date">2025</div>
+                            <p>Completed foundational training in UI/UX design principles and practices</p>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/DU6BQZS0L30D" target="_blank" class="certificate-link">View Certificate →</a>
+                        </div>
+
+                        <div class="certificate-item">
+                            <h3>Fundamentals of Graphic Design</h3>
+                            <div class="issuer">California Institute of the Arts</div>
+                            <div class="date">2025</div>
+                            <p>Mastered advanced UX design methodologies and user-centered design approaches</p>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/JAV6TWCZBN74" target="_blank" class="certificate-link">View Certificate →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-section-block">
+                    <h2>Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <h3>Design Tools</h3>
+                            <p>Figma, Adobe Creative Suite (Illustrator, Photoshop)</p>
+                        </div>
+                        <div class="skill-item">
+                            <h3>Core Skills</h3>
+                            <p>UX Research, Wireframing, 2D Illustration, Digital Marketing</p>
+                        </div>
+                        <div class="skill-item">
+                            <h3>Languages</h3>
+                            <p>English (C1), Turkish (Native)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3>Let's Work!</h3>
+                <div class="contact-links">
+                    <a href="mailto:contact@alperylz.com" class="contact-link">contact@alperylz.com</a>
+                    <a href="https://www.linkedin.com/in/alper-yıldız" target="_blank" class="contact-link">LinkedIn</a>
+                    <a href="https://www.behance.net/alperyldz1" target="_blank" class="contact-link">Behance</a>
+                    <a href="https://github.com/MyLuci" target="_blank" class="contact-link">GitHub</a>
+                </div>
+                <a href="assets/resume.pdf" download="Alper_Yildiz_Resume.pdf" class="download-resume">Download Resume</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

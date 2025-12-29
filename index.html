@@ -15,7 +15,7 @@
             --black: #1A1A1A;
             --white: #FAFAFA;
             --gray: #666;
-            --light-gray: #F5F5F5;
+            --light-gray: hsl(0, 0%, 94%);
         }
 
         * {
@@ -26,6 +26,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -33,73 +34,40 @@
             background: var(--white);
             color: var(--black);
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Bauhaus Geometric Decorations */
-        .bauhaus-shapes {
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            background-image: radial-gradient(circle, rgba(200, 200, 200, 0.4) 2px, transparent 2px);
+            background-size: 35px 35px;
             z-index: 0;
-            overflow: hidden;
+            pointer-events: none;
         }
 
-        .shape {
-            position: absolute;
-            opacity: 0.08;
+        .visitor-counter {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .circle {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: var(--bauhaus-red);
-            top: 10%;
-            right: -100px;
-        }
-
-        .triangle {
-            width: 0;
-            height: 0;
-            border-left: 120px solid transparent;
-            border-right: 120px solid transparent;
-            border-bottom: 200px solid var(--bauhaus-yellow);
-            bottom: 15%;
-            left: 5%;
-        }
-
-        .square {
-            width: 150px;
-            height: 150px;
-            background: var(--bauhaus-blue);
-            top: 60%;
-            right: 10%;
-            transform: rotate(15deg);
-        }
-
-        .circle-outline {
-            width: 200px;
-            height: 200px;
-            border: 4px solid var(--bauhaus-red);
-            border-radius: 50%;
-            top: 40%;
-            left: -50px;
-        }
-
-        .small-triangle {
-            width: 0;
-            height: 0;
-            border-left: 40px solid transparent;
-            border-right: 40px solid transparent;
-            border-bottom: 70px solid var(--bauhaus-blue);
-            top: 20%;
-            left: 15%;
-            transform: rotate(-10deg);
-        }
-
+        
+        
         /* Navigation */
         nav {
             position: fixed;
@@ -108,17 +76,17 @@
             right: 0;
             padding: 1.5rem 4rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
-            z-index: 1000;
-            background: rgba(250, 250, 250, 0.95);
-            backdrop-filter: blur(10px);
+            z-index: 9999;
+            background: #1a1a1a;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .logo {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            color: var(--black);
+            color: var(--white);
             text-decoration: none;
             letter-spacing: -0.5px;
             display: flex;
@@ -135,20 +103,24 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 5rem;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--gray);
+            color: var(--white);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 1.2rem;
             transition: color 0.2s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--black);
+        .nav-links li:first-child a:hover {
+            color: var(--bauhaus-blue);
+        }
+
+        .nav-links li:last-child a:hover {
+            color: var(--bauhaus-red);
         }
 
         /* Main Container */
@@ -162,7 +134,7 @@
 
         /* Header Section */
         .header {
-            padding-top: 140px;
+            padding-top: 120px;
             padding-bottom: 60px;
         }
 
@@ -171,6 +143,7 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 1rem;
+            transform: translateY(-20px);
         }
 
         .greeting-text {
@@ -193,8 +166,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 1.25rem;
             color: var(--bauhaus-red);
         }
 
@@ -289,105 +262,179 @@
             padding: 40px 0 100px;
         }
 
-        .projects-list {
-            display: flex;
-            flex-direction: column;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
         }
 
-        .project-item {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            padding: 2.5rem 0;
-            border-bottom: 1px solid #eee;
+        .project-card {
+            background: var(--light-gray);
+            border-radius: 12px;
+            aspect-ratio: 1/1;
+            position: relative;
+            overflow: hidden;
             text-decoration: none;
             color: inherit;
             transition: all 0.3s ease;
-            position: relative;
+            min-height: 350px;
         }
 
-        .project-item:first-child {
-            border-top: 1px solid #eee;
+        
+        /* Voila Project Card Background */
+        .project-card[href="projects/voila.html"] {
+            background-image: url('projects/Voila/logo.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: var(--white);
         }
 
-        .project-item:hover {
-            padding-left: 1rem;
+        .project-card[href="projects/voila.html"]::before {
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0.7) 40%, transparent 100%);
         }
 
-        .project-item:hover .project-title {
-            color: var(--bauhaus-blue);
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .project-item::before {
-            content: '';
+        .project-content {
             position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 8px;
-            background: var(--bauhaus-red);
-            border-radius: 50%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.8) 60%, transparent 100%);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .project-item:nth-child(2)::before {
-            background: var(--bauhaus-yellow);
-            border-radius: 0;
-        }
-
-        .project-item:nth-child(3)::before {
-            background: var(--bauhaus-blue);
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-bottom: 8px solid var(--bauhaus-blue);
-            border-radius: 0;
-        }
-
-        .project-item:nth-child(4)::before {
-            background: var(--bauhaus-red);
-            border-radius: 0;
-        }
-
-        .project-item:hover::before {
-            opacity: 1;
+        .project-card:hover .project-content {
+            transform: translateY(0);
         }
 
         .project-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 600;
             letter-spacing: -0.5px;
-            transition: color 0.3s ease;
-        }
-
-        .project-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
         }
 
         .project-description {
-            color: var(--gray);
-            font-size: 1rem;
-            line-height: 1.6;
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
         }
 
         .project-tags {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
-            margin-top: 0.5rem;
         }
 
         .project-tag {
-            font-size: 0.8rem;
-            color: var(--gray);
-            background: var(--light-gray);
-            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.25rem 0.6rem;
             border-radius: 20px;
+        }
+
+        /* Resume Popup */
+        .resume-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .resume-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .resume-popup {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100%);
+            width: 90%;
+            max-width: 900px;
+            height: 85vh;
+            background: var(--white);
+            border-radius: 0 0 20px 20px;
+            z-index: 2001;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .resume-popup.active {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #eee;
+            background: var(--white);
+        }
+
+        .resume-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resume-header h3::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--bauhaus-red);
+            border-radius: 50%;
+        }
+
+        .resume-close {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--light-gray);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .resume-close:hover {
+            background: var(--bauhaus-red);
+            color: var(--white);
+        }
+
+        .resume-body {
+            height: calc(100% - 60px);
+            overflow: hidden;
+        }
+
+        .resume-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Footer */
@@ -494,15 +541,11 @@
     </style>
 </head>
 <body>
-    <!-- Bauhaus Geometric Shapes -->
-    <div class="bauhaus-shapes">
-        <div class="shape circle"></div>
-        <div class="shape triangle"></div>
-        <div class="shape square"></div>
-        <div class="shape circle-outline"></div>
-        <div class="shape small-triangle"></div>
+    <!-- Visitor Counter -->
+    <div class="visitor-counter">
+        <span id="visitor-count">0</span> visitors
     </div>
-
+    
     <!-- Navigation -->
     <nav>
         <a href="#" class="logo">
@@ -510,10 +553,23 @@
             Alper Yıldız
         </a>
         <ul class="nav-links">
-            <li><a href="#about">about</a></li>
-            <li><a href="assets/resume.pdf" target="_blank">resume</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="resume.html">resume</a></li>
+            <li><a href="index.html">work</a></li>
         </ul>
     </nav>
+
+    <!-- Resume Popup -->
+    <div class="resume-overlay" id="resumeOverlay"></div>
+    <div class="resume-popup" id="resumePopup">
+        <div class="resume-header">
+            <h3>Resume</h3>
+            <button class="resume-close" id="resumeClose">&times;</button>
+        </div>
+        <div class="resume-body">
+            <img src="assets/Resume.png" alt="Resume" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="container">
@@ -527,16 +583,16 @@
             </div>
             <h1 class="name">Alper Yıldız</h1>
             <p class="title">
-                UI/UX Designer
+                Entry level <strong>UI/UX Designer</strong>
             </p>
         </header>
 
         <!-- Projects Section -->
         <section class="projects-section">
-            <div class="projects-list">
-                <a href="projects/grillcorner.html" class="project-item">
-                    <h3 class="project-title">GrillCorner</h3>
-                    <div class="project-meta">
+            <div class="projects-grid">
+                <a href="projects/grillcorner.html" class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">GrillCorner</h3>
                         <p class="project-description">A playful food delivery app that makes ordering feel like a treat.</p>
                         <div class="project-tags">
                             <span class="project-tag">Mobile App</span>
@@ -545,34 +601,34 @@
                     </div>
                 </a>
 
-                <a href="projects/project-2.html" class="project-item">
-                    <h3 class="project-title">Project Title</h3>
-                    <div class="project-meta">
-                        <p class="project-description">Short description of your project goes here. Explain the impact and your role.</p>
+                <a href="projects/voila.html" class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Voila</h3>
+                        <p class="project-description">Meet Voilà! A bold brand blending vivid colors and playful typography to spark instant excitement</p>
                         <div class="project-tags">
-                            <span class="project-tag">Web Design</span>
-                            <span class="project-tag">Branding</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="projects/project-3.html" class="project-item">
-                    <h3 class="project-title">Project Title</h3>
-                    <div class="project-meta">
-                        <p class="project-description">Short description of your project goes here. Explain the impact and your role.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Design System</span>
+                            <span class="project-tag">Mobile Design</span>
                             <span class="project-tag">UI/UX</span>
                         </div>
                     </div>
                 </a>
 
-                <a href="projects/project-4.html" class="project-item">
-                    <h3 class="project-title">Project Title</h3>
-                    <div class="project-meta">
-                        <p class="project-description">Short description of your project goes here. Explain the impact and your role.</p>
+                <a href="projects/project-3.html" class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Project Title</h3>
+                        <p class="project-description">Short description of your project goes here.</p>
                         <div class="project-tags">
+                            <span class="project-tag">Design System</span>
                             <span class="project-tag">Prototyping</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="projects/project-4.html" class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Project Title</h3>
+                        <p class="project-description">Short description of your project goes here.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">App Design</span>
                             <span class="project-tag">Research</span>
                         </div>
                     </div>
@@ -584,7 +640,7 @@
         <footer id="about">
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="mailto:contact@alperylz.com">contact@alperylz.com</a>
+                    <a href="mailto:contact@alperylz.com" id="emailLink">contact@alperylz.com</a>
                     <a href="https://www.linkedin.com/in/alper-yıldız" target="_blank">LinkedIn</a>
                     <a href="https://www.behance.net/alperyldz1" target="_blank">Behance</a>
                     <a href="https://github.com/MyLuci" target="_blank">GitHub</a>
@@ -648,6 +704,68 @@
             slot.appendChild(reel);
             slotsContainer.appendChild(slot);
         }
+
+        // Email copy functionality
+        const emailLink = document.getElementById('emailLink');
+        
+        emailLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const email = 'contact@alperylz.com';
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(email).then(() => {
+                // Open email client
+                window.location.href = 'mailto:' + email;
+            }).catch(() => {
+                // Fallback: open email client
+                window.location.href = 'mailto:' + email;
+            });
+        });
+
+        // Resume Popup functionality
+        const resumeBtn = document.getElementById('resumeBtn');
+        const resumeOverlay = document.getElementById('resumeOverlay');
+        const resumePopup = document.getElementById('resumePopup');
+        const resumeClose = document.getElementById('resumeClose');
+
+        function openResume() {
+            resumeOverlay.classList.add('active');
+            resumePopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResume() {
+            resumeOverlay.classList.remove('active');
+            resumePopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        resumeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openResume();
+        });
+
+        resumeClose.addEventListener('click', closeResume);
+        resumeOverlay.addEventListener('click', closeResume);
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeResume();
+            }
+        });
+
+        // Visitor Counter
+        function updateVisitorCounter() {
+            let count = localStorage.getItem('visitorCount') || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem('visitorCount', count);
+            document.getElementById('visitor-count').textContent = count;
+        }
+
+        // Update counter on page load
+        updateVisitorCounter();
     </script>
 </body>
 </html>
