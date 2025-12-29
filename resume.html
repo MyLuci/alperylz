@@ -35,6 +35,19 @@
             color: var(--black);
             line-height: 1.6;
             overflow-x: hidden;
+            opacity: 0;
+            animation: fadeInPage 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         
@@ -47,17 +60,17 @@
             right: 0;
             padding: 1.5rem 4rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
-            z-index: 1000;
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            background: #1a1a1a;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .logo {
             font-size: 1.4rem;
             font-weight: 600;
-            color: var(--black);
+            color: var(--white);
             text-decoration: none;
             letter-spacing: -0.5px;
             display: flex;
@@ -74,13 +87,13 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 5rem;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--gray);
+            color: var(--white);
             font-weight: 500;
             font-size: 1.2rem;
             transition: color 0.2s ease;
@@ -449,6 +462,7 @@
         <ul class="nav-links">
             <li><a href="about.html">about</a></li>
             <li><a href="resume.html">resume</a></li>
+            <li><a href="index.html">work</a></li>
         </ul>
     </nav>
 

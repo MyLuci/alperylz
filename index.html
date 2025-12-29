@@ -29,6 +29,7 @@
             overflow-x: hidden;
         }
 
+        /* Page Transition Animation */
         body {
             font-family: 'Space Grotesk', sans-serif;
             background: var(--white);
@@ -38,6 +39,17 @@
             position: relative;
         }
 
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         body::before {
             content: '';
             position: fixed;
@@ -45,26 +57,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle, rgba(200, 200, 200, 0.4) 2px, transparent 2px);
+            background-image: radial-gradient(circle, rgba(150, 150, 150, 0.3) 2px, transparent 2px);
             background-size: 35px 35px;
             z-index: 0;
             pointer-events: none;
         }
 
-        .visitor-counter {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            z-index: 10001;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
+        
         
         
         /* Navigation */
@@ -129,12 +128,14 @@
             padding: 0 4rem;
             position: relative;
             z-index: 1;
+            overflow: visible;
         }
 
         /* Header Section */
         .header {
-            padding-top: 120px;
-            padding-bottom: 60px;
+            padding-top: 60px;
+            padding-bottom: 40px;
+            overflow: visible;
         }
 
         .greeting {
@@ -221,12 +222,109 @@
         }
 
         .title {
-            font-size: 1.1rem;
-            color: var(--gray);
-            font-weight: 400;
+            font-size: 2.5rem;
+            color: var(--black);
+            font-weight: 600;
+            text-align: center;
+            max-width: 900px;
+            margin: 8rem auto 0;
+            line-height: 1.4;
+        }
+
+        .highlight {
+            background: var(--bauhaus-yellow);
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+        }
+
+        .greeting-large {
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 0.75rem;
+            margin: 8rem 0 1rem 0;
+            padding: 1rem 3rem;
+            overflow: visible;
+            width: 100%;
+        }
+
+        .greeting-text-large {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.05rem;
+            overflow: visible;
+        }
+
+        .greeting-text-large .letter-slot {
+            height: 3.5em;
+            overflow: hidden;
+            position: relative;
+            margin: 0 0.2em;
+            min-width: 1em;
+        }
+
+        .greeting-text-large .letter-slot.space {
+            width: 0.3em;
+        }
+
+        .greeting-text-large .letter-reel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--bauhaus-red);
+        }
+
+        .greeting-text-large .letter-slot:nth-child(1) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0s; }
+        .greeting-text-large .letter-slot:nth-child(2) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.05s; }
+        .greeting-text-large .letter-slot:nth-child(3) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.1s; }
+        .greeting-text-large .letter-slot:nth-child(4) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.15s; }
+        .greeting-text-large .letter-slot:nth-child(5) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.2s; }
+        .greeting-text-large .letter-slot:nth-child(6) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.25s; }
+        .greeting-text-large .letter-slot:nth-child(7) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.3s; }
+        .greeting-text-large .letter-slot:nth-child(8) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.35s; }
+        .greeting-text-large .letter-slot:nth-child(9) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.4s; }
+        .greeting-text-large .letter-slot:nth-child(10) .letter-reel { animation: letterSpin 12s cubic-bezier(0.23, 1, 0.32, 1) infinite; animation-delay: 0.45s; }
+
+        @keyframes letterSpin {
+            0%, 10% { transform: translateY(0); }
+            15%, 25% { transform: translateY(-1.4em); }
+            30%, 40% { transform: translateY(-2.8em); }
+            45%, 55% { transform: translateY(-4.2em); }
+            60%, 70% { transform: translateY(-5.6em); }
+            75%, 85% { transform: translateY(-7em); }
+            90%, 100% { transform: translateY(-8.4em); }
+        }
+
+        .work-title {
+            text-align: center;
+            margin-top: 8rem;
+        }
+
+        .work-heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .down-arrow {
+            font-size: 2rem;
+            color: var(--bauhaus-red);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
 
         .title-shape {
@@ -540,11 +638,6 @@
     </style>
 </head>
 <body>
-    <!-- Visitor Counter -->
-    <div class="visitor-counter">
-        <span id="visitor-count">0</span> visitors
-    </div>
-    
     <!-- Navigation -->
     <nav>
         <a href="#" class="logo">
@@ -566,7 +659,7 @@
             <button class="resume-close" id="resumeClose">&times;</button>
         </div>
         <div class="resume-body">
-            <img src="assets/Resume.png" alt="Resume" style="width: 100%; height: 100%; object-fit: contain;">
+            <img src="assets/resume.pdf" alt="Resume" style="width: 100%; height: 100%; object-fit: contain;">
         </div>
     </div>
 
@@ -574,64 +667,66 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <div class="greeting">
-                <div class="greeting-text" id="greetingSlots">
-                    <!-- Letters will be generated by JavaScript -->
-                </div>
-                <span class="wave">👋</span>
+                <div class="greeting-large">
+            <div class="greeting-text-large" id="greetingSlotsTitle">
+                <!-- Letters will be generated by JavaScript -->
             </div>
-            <h1 class="name">Alper Yıldız</h1>
-            <p class="title">
-                Entry level <strong>UI/UX Designer</strong>
-            </p>
-        </header>
+        </div>
+        <p class="title">
+            I'm Alper, a <span class="highlight">visual designer</span> based in Istanbul , turning bold concepts into vibrant digital experiences
+        </p>
+        <div class="work-title">
+            <h2 class="work-heading">My Work</h2>
+            <div class="down-arrow">↓</div>
+        </div>
+    </header>
 
-        <!-- Projects Section -->
-        <section class="projects-section">
-            <div class="projects-grid">
-                <a href="projects/grillcorner.html" class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">GrillCorner</h3>
-                        <p class="project-description">A playful food delivery app that makes ordering feel like a treat.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Mobile App</span>
-                            <span class="project-tag">UI/UX</span>
-                        </div>
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="projects-grid">
+            <a href="projects/grillcorner.html" class="project-card">
+                <div class="project-content">
+                    <h3 class="project-title">GrillCorner</h3>
+                    <p class="project-description">A playful food delivery app that makes ordering feel like a treat.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Mobile App</span>
+                        <span class="project-tag">UI/UX</span>
                     </div>
-                </a>
+                </div>
+            </a>
 
                 <a href="projects/voila.html" class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Voila</h3>
-                        <p class="project-description">Meet Voilà! A bold brand blending vivid colors and playful typography to spark instant excitement</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Mobile Design</span>
-                            <span class="project-tag">UI/UX</span>
-                        </div>
+                <div class="project-content">
+                    <h3 class="project-title">Voila</h3>
+                    <p class="project-description">Meet Voilà! A bold brand blending vivid colors and playful typography to spark instant excitement</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Brand Identity</span>
+                        <span class="project-tag">Graphic Design</span>
                     </div>
-                </a>
+                </div>
+            </a>
 
-                <a href="projects/project-3.html" class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Project Title</h3>
-                        <p class="project-description">Short description of your project goes here.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Design System</span>
-                            <span class="project-tag">Prototyping</span>
-                        </div>
+            <a href="projects/project-3.html" class="project-card">
+                <div class="project-content">
+                    <h3 class="project-title">Project Title</h3>
+                    <p class="project-description">Short description of your project goes here.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Design System</span>
+                        <span class="project-tag">Prototyping</span>
                     </div>
-                </a>
+                </div>
+            </a>
 
-                <a href="projects/project-4.html" class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Project Title</h3>
-                        <p class="project-description">Short description of your project goes here.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">App Design</span>
-                            <span class="project-tag">Research</span>
-                        </div>
+            <a href="projects/project-4.html" class="project-card">
+                <div class="project-content">
+                    <h3 class="project-title">Project Title</h3>
+                    <p class="project-description">Short description of your project goes here.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">App Design</span>
+                        <span class="project-tag">Research</span>
                     </div>
-                </a>
+                </div>
+            </a>
             </div>
         </section>
 
@@ -668,9 +763,10 @@
         const maxLen = Math.max(...greetings.map(g => g.length));
         const paddedGreetings = greetings.map(g => g.padEnd(maxLen, ' '));
         
-        const slotsContainer = document.getElementById('greetingSlots');
+        // Generate greeting for title
+        const slotsContainerTitle = document.getElementById('greetingSlotsTitle');
         
-        // Create a slot for each character position
+        // Create a slot for each character position in title
         for (let i = 0; i < maxLen; i++) {
             const slot = document.createElement('div');
             slot.className = 'letter-slot';
@@ -701,7 +797,7 @@
             reel.appendChild(loopSpan);
             
             slot.appendChild(reel);
-            slotsContainer.appendChild(slot);
+            slotsContainerTitle.appendChild(slot);
         }
 
         // Email copy functionality
@@ -729,24 +825,34 @@
         const resumeClose = document.getElementById('resumeClose');
 
         function openResume() {
-            resumeOverlay.classList.add('active');
-            resumePopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            if (resumeOverlay && resumePopup) {
+                resumeOverlay.classList.add('active');
+                resumePopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeResume() {
-            resumeOverlay.classList.remove('active');
-            resumePopup.classList.remove('active');
-            document.body.style.overflow = '';
+            if (resumeOverlay && resumePopup) {
+                resumeOverlay.classList.remove('active');
+                resumePopup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         }
 
-        resumeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openResume();
-        });
+        if (resumeBtn) {
+            resumeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openResume();
+            });
+        }
 
-        resumeClose.addEventListener('click', closeResume);
-        resumeOverlay.addEventListener('click', closeResume);
+        if (resumeClose) {
+            resumeClose.addEventListener('click', closeResume);
+        }
+        if (resumeOverlay) {
+            resumeOverlay.addEventListener('click', closeResume);
+        }
 
         // Close on Escape key
         document.addEventListener('keydown', function(e) {
@@ -755,19 +861,7 @@
             }
         });
 
-        // Visitor Counter
-        try {
-            let count = localStorage.getItem('visitorCount') || '0';
-            count = parseInt(count) + 1;
-            localStorage.setItem('visitorCount', count.toString());
-            const counterElement = document.getElementById('visitor-count');
-            if (counterElement) {
-                counterElement.textContent = count;
-            }
-        } catch (e) {
-            console.log('Visitor counter error:', e);
-        }
-    </script>
+            </script>
 </body>
 </html>
 
