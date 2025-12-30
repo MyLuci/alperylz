@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About — Alper Yıldız</title>
+    <title>Alper Yıldız</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link id="favicon" rel="icon" type="image/svg+xml">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -410,7 +409,6 @@
     <!-- Navigation -->
     <nav>
         <a href="index.html" class="logo">
-            <span class="logo-circle"></span>
             Alper Yıldız
         </a>
         <ul class="nav-links">
@@ -530,47 +528,6 @@
             }
         });
 
-        // Randomize favicon
-        // Create geometric favicons using canvas
-        const createGeometricFavicon = (shape, color) => {
-            const canvas = document.createElement('canvas');
-            canvas.width = 100;
-            canvas.height = 100;
-            const ctx = canvas.getContext('2d');
-            
-            ctx.fillStyle = color;
-            
-            if (shape === 'circle') {
-                // Red dot
-                ctx.beginPath();
-                ctx.arc(50, 50, 35, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (shape === 'triangle') {
-                // Yellow triangle
-                ctx.beginPath();
-                ctx.moveTo(50, 15);
-                ctx.lineTo(85, 75);
-                ctx.lineTo(15, 75);
-                ctx.closePath();
-                ctx.fill();
-            } else if (shape === 'square') {
-                // Blue square
-                ctx.fillRect(20, 20, 60, 60);
-            }
-            
-            return canvas.toDataURL('image/png');
-        };
-
-        // Geometric favicons
-        const geometricFavicons = [
-            createGeometricFavicon('circle', '#E53935'),  // Red dot
-            createGeometricFavicon('triangle', '#FDD835'), // Yellow triangle
-            createGeometricFavicon('square', '#1E88E5')   // Blue square
-        ];
-        
-        const randomFavicon = geometricFavicons[Math.floor(Math.random() * geometricFavicons.length)];
-        document.getElementById('favicon').href = randomFavicon;
-
-    </script>
+        </script>
 </body>
 </html>
