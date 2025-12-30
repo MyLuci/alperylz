@@ -7,71 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
     <style>
-        :root {
-            --bauhaus-red: #E53935;
-            --bauhaus-yellow: #FDD835;
-            --bauhaus-blue: #1E88E5;
-            --black: #1A1A1A;
-            --white: #FAFAFA;
-            --gray: #666;
-            --light-gray: hsl(0, 0%, 94%);
-            --light-red-orange: #FF6B35;
-            --blue-yellow: #4A90E2;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Custom Cursor */
-        body {
-            cursor: none;
-        }
-
-        * {
-            cursor: none !important;
-        }
-
-        a, button, .project-card, .nav-links li, input, textarea, select {
-            cursor: none !important;
-        }
-
-        .custom-cursor {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--bauhaus-red);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transition: transform 0.1s ease;
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-
-        .custom-cursor.hover {
-            transform: translate(-50%, -50%) scale(1.3);
-            border-color: var(--bauhaus-blue);
-            border-radius: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        /* Page Transition Animation */
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
+        /* Page-specific styles for index.html */
 
         @keyframes fadeInPage {
             from {
@@ -756,7 +694,18 @@
             }
 
             .greeting-large {
-                font-size: 3rem;
+                font-size: 2.5rem;
+            }
+
+            .greeting-text-large {
+                flex-wrap: nowrap;
+                overflow: hidden;
+                max-width: 100%;
+            }
+
+            .greeting-text-large .letter-slot {
+                height: 2.5em;
+                min-width: 0.5em;
             }
 
             .title {
@@ -822,11 +771,22 @@
             }
 
             .greeting-large {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+
+            .greeting-text-large {
+                flex-wrap: nowrap;
+                overflow: hidden;
+                max-width: 100%;
+            }
+
+            .greeting-text-large .letter-slot {
+                height: 2em;
+                min-width: 0.4em;
             }
 
             .title {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .project-card {
@@ -1170,5 +1130,6 @@
         });
 
             </script>
+    <script src="js/cursor.js"></script>
 </body>
 </html>
