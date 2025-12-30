@@ -480,45 +480,8 @@
     </div>
 
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.custom-cursor');
-
-        // Initialize cursor position
-        function updateCursorPosition(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        }
-
-        // Set cursor position on first mousemove
-        let cursorInitialized = false;
-        document.addEventListener('mousemove', (e) => {
-            updateCursorPosition(e);
-            if (!cursorInitialized) {
-                cursorInitialized = true;
-                cursor.style.display = 'block';
-            }
-        });
-
-        // Add hover effects
-        const hoverElements = document.querySelectorAll('a, button, .project-card, .nav-links li');
-        hoverElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-            });
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursor.style.display = 'block';
-        });
-
-        document.addEventListener('mouseleave', () => {
-            cursor.style.display = 'none';
-        });
-
+        
+        
         </script>
-    <script src="js/cursor.js"></script>
 </body>
 </html>
