@@ -688,13 +688,32 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            /* Tablet styles */
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .greeting-large {
+                font-size: 4rem;
+            }
+            
+            .header {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+        }
+
         @media (max-width: 768px) {
+            /* Mobile styles */
             nav {
                 padding: 1rem 1.5rem;
             }
 
             .nav-links {
                 gap: 1.5rem;
+                font-size: 1rem;
             }
 
             .container {
@@ -706,6 +725,22 @@
                 padding-bottom: 40px;
             }
 
+            .greeting-large {
+                font-size: 3rem;
+            }
+
+            .title {
+                font-size: 1.2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
             .project-item {
                 grid-template-columns: 1fr;
                 gap: 0.75rem;
@@ -714,6 +749,17 @@
             .footer-content {
                 flex-direction: column;
                 gap: 1.5rem;
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .footer-shapes {
+                order: -1;
             }
 
             .circle {
@@ -731,6 +777,51 @@
                 border-left: 60px solid transparent;
                 border-right: 60px solid transparent;
                 border-bottom: 100px solid var(--bauhaus-yellow);
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Small mobile styles */
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .greeting-large {
+                font-size: 2.5rem;
+            }
+
+            .title {
+                font-size: 1.1rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .project-title {
+                font-size: 1.3rem;
+            }
+
+            .project-description {
+                font-size: 0.95rem;
+            }
+
+            .project-tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                padding: 1rem;
             }
         }
     </style>
