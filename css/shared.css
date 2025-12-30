@@ -21,40 +21,9 @@
     box-sizing: border-box;
 }
 
-/* Custom Cursor - Disabled on mobile */
-@media (min-width: 769px) {
-    html, body, * {
-        cursor: none !important;
-    }
-}
-
-@media (max-width: 768px) {
-    html, body, * {
-        cursor: auto !important;
-    }
-    
-    .custom-cursor {
-        display: none !important;
-    }
-}
-
+/* Custom Cursor - Completely Disabled */
 .custom-cursor {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    border: 3px solid var(--bauhaus-red);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transition: transform 0.15s ease, border-color 0.15s ease, border-radius 0.15s ease;
-    transform: translate(-50%, -50%);
-    display: none;
-}
-
-.custom-cursor.hover {
-    transform: translate(-50%, -50%) scale(1.3);
-    border-color: var(--bauhaus-blue);
-    border-radius: 0;
+    display: none !important;
 }
 
 html {

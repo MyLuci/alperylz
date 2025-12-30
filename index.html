@@ -37,9 +37,9 @@
 
         /* Main Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 4rem;
+            padding: 0 2rem;
             position: relative;
             z-index: 1;
             overflow: visible;
@@ -74,7 +74,7 @@
         }
 
         .header {
-            padding-top: 60px;
+            padding-top: 100px;
             padding-bottom: 40px;
             overflow: visible;
             text-align: center;
@@ -240,7 +240,7 @@
 
         .work-title {
             text-align: center;
-            margin-top: 8rem;
+            margin-top: 18rem;
         }
 
         .work-heading {
@@ -249,6 +249,13 @@
             color: var(--black);
             margin-bottom: 1rem;
             letter-spacing: -1px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .work-heading:hover {
+            color: var(--bauhaus-blue);
+            text-shadow: 0 0 10px rgba(30, 136, 229, 0.3);
         }
 
         .down-arrow {
@@ -298,13 +305,13 @@
 
         /* Projects Section */
         .projects-section {
-            padding: 120px 0 100px;
+            padding: 180px 0 100px;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
+            gap: 4rem;
         }
 
         .project-card {
@@ -315,8 +322,15 @@
             overflow: hidden;
             text-decoration: none;
             color: inherit;
-            transition: all 0.3s ease;
-            min-height: 350px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 450px;
+            opacity: 0;
+            transform: translateY(80px);
+        }
+
+        .project-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         
@@ -540,14 +554,26 @@
 
         /* Footer */
         footer {
-            padding: 3rem 0;
-            border-top: 1px solid #eee;
+            padding: 1rem 0;
+            background: #1a1a1a;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+        }
+
+        footer.visible {
+            opacity: 1;
         }
 
         .footer-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 4rem;
         }
 
         .footer-links {
@@ -556,14 +582,14 @@
         }
 
         .footer-links a {
-            color: var(--gray);
+            color: var(--white);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.2s ease;
         }
 
         .footer-links a:hover {
-            color: var(--black);
+            color: var(--bauhaus-yellow);
         }
 
         .footer-shapes {
@@ -767,7 +793,7 @@
         <ul class="nav-links">
             <li><a href="about.html">about</a></li>
             <li><a href="resume.html">resume</a></li>
-            <li><a href="index.html">work</a></li>
+            <li><a href="index.html" id="navWorkLink">work</a></li>
         </ul>
     </nav>
 
@@ -797,7 +823,7 @@
             <span id="dynamic-text" class="dynamic-text">turning bold concepts into vibrant digital experiences</span>
         </p>
         <div class="work-title">
-            <h2 class="work-heading">My Work</h2>
+            <h2 class="work-heading" id="workHeading">My Work</h2>
             <div class="down-arrow">↓</div>
         </div>
     </header>
@@ -1030,42 +1056,70 @@
         // Start the animation
         typeText();
 
-        // Custom Cursor
+        // Custom Cursor - Disabled
         const cursor = document.querySelector('.custom-cursor');
-
-        // Initialize cursor position
-        function updateCursorPosition(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        if (cursor) {
+            cursor.style.display = 'none';
         }
 
-        // Set cursor position on first mousemove
-        let cursorInitialized = false;
-        document.addEventListener('mousemove', (e) => {
-            updateCursorPosition(e);
-            if (!cursorInitialized) {
-                cursorInitialized = true;
-                cursor.style.display = 'block';
+        // Scroll-triggered animation for project cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Click to scroll to projects section
+        const workHeading = document.getElementById('workHeading');
+        const navWorkLink = document.getElementById('navWorkLink');
+        
+        function scrollToProjects() {
+            const projectsSection = document.querySelector('.projects-section');
+            if (projectsSection) {
+                projectsSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
-        });
-
-        // Add hover effects
-        const hoverElements = document.querySelectorAll('a, button, .project-card, .nav-links li');
-        hoverElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
+        }
+        
+        if (workHeading) {
+            workHeading.addEventListener('click', scrollToProjects);
+        }
+        
+        if (navWorkLink) {
+            navWorkLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                scrollToProjects();
             });
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
+        }
 
-        document.addEventListener('mouseenter', () => {
-            cursor.style.display = 'block';
-        });
+        // Show/hide footer on scroll
+        const footer = document.querySelector('footer');
+        let lastScrollTop = 0;
 
-        document.addEventListener('mouseleave', () => {
-            cursor.style.display = 'none';
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 200) {
+                footer.classList.add('visible');
+            } else {
+                footer.classList.remove('visible');
+            }
+            
+            lastScrollTop = scrollTop;
         });
 
             </script>
