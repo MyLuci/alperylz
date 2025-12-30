@@ -49,6 +49,7 @@
             z-index: 99999;
             transition: transform 0.1s ease;
             transform: translate(-50%, -50%);
+            display: none;
         }
 
         .custom-cursor.hover {
@@ -1133,10 +1134,20 @@
         // Custom Cursor
         const cursor = document.querySelector('.custom-cursor');
 
-        // Move cursor with mouse
-        document.addEventListener('mousemove', (e) => {
+        // Initialize cursor position
+        function updateCursorPosition(e) {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
+        }
+
+        // Set cursor position on first mousemove
+        let cursorInitialized = false;
+        document.addEventListener('mousemove', (e) => {
+            updateCursorPosition(e);
+            if (!cursorInitialized) {
+                cursorInitialized = true;
+                cursor.style.display = 'block';
+            }
         });
 
         // Add hover effects
@@ -1150,12 +1161,12 @@
             });
         });
 
-        // Hide cursor when leaving window
-        document.addEventListener('mouseleave', () => {
-            cursor.style.display = 'none';
-        });
         document.addEventListener('mouseenter', () => {
             cursor.style.display = 'block';
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none';
         });
 
             </script>
