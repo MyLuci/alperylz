@@ -21,10 +21,6 @@
     box-sizing: border-box;
 }
 
-/* Custom Cursor - Completely Disabled */
-.custom-cursor {
-    display: none !important;
-}
 
 html {
     scroll-behavior: smooth;
