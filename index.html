@@ -670,6 +670,30 @@
             /* Mobile styles */
             .container {
                 padding: 0 1rem;
+                overflow-x: hidden;
+            }
+            
+            .projects-section {
+                padding: 60px 0 40px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            .project-card {
+                min-height: 280px;
+                aspect-ratio: 16/10;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .header {
@@ -689,14 +713,14 @@
             }
 
             .greeting-text-large .letter-slot {
-                height: 2em;
-                min-width: 0.4em;
-                margin: 0 0.05em;
+                height: 2.2em;
+                min-width: 0.5em;
+                margin: 0 0.08em;
                 overflow: hidden;
             }
 
             .greeting-text-large .letter-reel {
-                font-size: 1.5rem;
+                font-size: 2rem;
                 overflow: hidden;
             }
 
@@ -729,19 +753,6 @@
                 font-size: 1.5rem;
             }
             
-            .projects-section {
-                padding: 60px 0 40px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-            
-            .project-card {
-                min-height: 280px;
-                aspect-ratio: 16/10;
-            }
             
             .project-content {
                 transform: translateY(0);
@@ -797,6 +808,19 @@
             /* Small mobile styles */
             .container {
                 padding: 0 0.75rem;
+                overflow-x: hidden;
+            }
+            
+            .projects-grid {
+                gap: 1rem;
+                padding: 0;
+            }
+
+            .project-card {
+                min-height: 220px;
+                aspect-ratio: 16/9;
+                width: 100%;
+                max-width: 100%;
             }
             
             .header {
@@ -816,14 +840,14 @@
             }
 
             .greeting-text-large .letter-slot {
-                height: 1.8em;
-                min-width: 0.35em;
-                margin: 0 0.02em;
+                height: 2em;
+                min-width: 0.45em;
+                margin: 0 0.05em;
                 overflow: hidden;
             }
 
             .greeting-text-large .letter-reel {
-                font-size: 1.2rem;
+                font-size: 1.6rem;
                 overflow: hidden;
             }
 
@@ -857,15 +881,6 @@
             
             .projects-section {
                 padding: 40px 0 30px;
-            }
-            
-            .projects-grid {
-                gap: 1rem;
-            }
-
-            .project-card {
-                min-height: 220px;
-                aspect-ratio: 16/9;
             }
             
             .project-content {
