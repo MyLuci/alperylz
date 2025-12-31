@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alper Yıldız</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        /* Page load animation */
+        .hero-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInFromTop 0.8s ease forwards;
+        }
+
+        .hero-animate.delay-1 { animation-delay: 0.1s; }
+        .hero-animate.delay-2 { animation-delay: 0.2s; }
+        .hero-animate.delay-3 { animation-delay: 0.3s; }
+        .hero-animate.delay-4 { animation-delay: 0.4s; }
+        .hero-animate.delay-5 { animation-delay: 0.5s; }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 140px 0 100px;
+        }
+
+        .about-header {
+            margin-bottom: 3rem;
+        }
+
+        .about-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .about-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .about-section-block {
+            margin-bottom: 3rem;
+        }
+
+        .about-section-block h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-section-block h2::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--bauhaus-red);
+            border-radius: 50%;
+        }
+
+        .about-section-block:nth-child(2) h2::before {
+            background: none;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid var(--bauhaus-yellow);
+            border-radius: 0;
+        }
+
+        .about-section-block:nth-child(3) h2::before {
+            background: var(--bauhaus-blue);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid var(--bauhaus-blue);
+            border-radius: 0;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .skill-item p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .contact-section {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-link:hover {
+            color: var(--bauhaus-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .about-section {
+                padding: 100px 0 60px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    
+    <nav>
+        <a href="index.html" class="logo">Alper Yıldız</a>
+        <ul class="nav-links">
+            <li><a href="about.html">about</a></li>
+            <li><a href="resume.html">resume</a></li>
+            <li><a href="index.html">work</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="about-section">
+            <div class="about-header">
+                <h1 class="about-title hero-animate">Hey, I'm Alper. Nice to meet you!</h1>
+                <p class="about-subtitle hero-animate delay-1">Visual Designer passionate about creating meaningful digital experiences</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-section-block hero-animate delay-2">
+                    <h2>About Me</h2>
+                    <p class="about-text">As an entry-level Visual Designer, I create digital experiences that are both beautiful and functional. I specialize in UI/UX design and graphic design, bringing creative ideas to life through thoughtful visual solutions. I can also code in HTML to bring my designs to the web.</p>
+                    <p class="about-text">My approach combines creativity with technical skills, allowing me to not only design beautiful interfaces but also implement them. I use AI-powered tools to help streamline my workflow and enhance my creative process. I'm passionate about creating designs that solve real problems while maintaining visual appeal and user-friendly experiences.</p>
+                </div>
+
+                <div class="about-section-block hero-animate delay-3">
+                    <h2>Skills &amp; Expertise</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <h3>UI Design</h3>
+                            <p>Creating beautiful, intuitive interfaces with attention to detail and visual hierarchy</p>
+                        </div>
+                        <div class="skill-item">
+                            <h3>UX Research</h3>
+                            <p>Conducting user research, interviews, and usability testing to inform design decisions</p>
+                        </div>
+                        <div class="skill-item">
+                            <h3>Prototyping</h3>
+                            <p>Building interactive prototypes from low-fidelity wireframes to high-fidelity mockups</p>
+                        </div>
+                        <div class="skill-item">
+                            <h3>Graphic Design</h3>
+                            <p>Crafting compelling visual identities, brand systems, and print materials that communicate ideas effectively</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-section-block hero-animate delay-4">
+                    <h2>Beyond Design</h2>
+                    <p class="about-text">Outside of work, I enjoy exploring new technologies and staying up-to-date with the latest design trends. I'm passionate about continuous learning and believe that great design comes from understanding diverse perspectives and experiences.</p>
+                    <p class="about-text">I also love sharing knowledge with the design community and collaborating with other creatives to push the boundaries of what's possible in digital design.</p>
+                </div>
+            </div>
+
+            <div class="contact-section hero-animate delay-5">
+                <h3>Let's Work!</h3>
+                <div class="contact-links">
+                    <a href="mailto:contact@alperylz.com" class="contact-link">contact@alperylz.com</a>
+                    <a href="https://www.linkedin.com/in/alper-yıldız" target="_blank" class="contact-link">LinkedIn</a>
+                    <a href="https://www.behance.net/alperyldz1" target="_blank" class="contact-link">Behance</a>
+                    <a href="https://github.com/MyLuci" target="_blank" class="contact-link">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/cursor.js"></script>
+</body>
+</html>
