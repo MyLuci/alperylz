@@ -87,7 +87,31 @@ nav {
     color: var(--white);
     font-weight: 500;
     font-size: 1.2rem;
-    transition: color 0.2s ease;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--bauhaus-yellow);
+    transition: width 0.3s ease;
+}
+
+.nav-links li:first-child a::after {
+    background: var(--light-red-orange);
+}
+
+.nav-links li:nth-child(2) a::after {
+    background: var(--bauhaus-blue);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .nav-links li:first-child a:hover {
